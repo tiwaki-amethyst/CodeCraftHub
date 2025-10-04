@@ -11,7 +11,8 @@ export class UsersController {
   async register(@Body() dto: CreateUserDto) {
     const { email, password, role } = dto;
     const user = await this.usersService.createUser(email, password, role ? [role] : ['student']);
-    return { id: user._id, email: user.email };
+    const userId = (user as any)._id.toString();
+    return { id: userId, email: user.email };
   }
 
   @Get('me')
