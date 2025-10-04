@@ -7,6 +7,9 @@ export enum UserStatus { ACTIVE = 'active', INACTIVE = 'inactive' }
 
 @Schema({ timestamps: true })
 export class User {
+  @Prop({ unique: true })
+  username?: string;
+
   @Prop({ required: true, unique: true, lowercase: true })
   email: string;
 
